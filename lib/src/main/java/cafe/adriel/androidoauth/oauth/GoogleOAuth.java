@@ -34,6 +34,7 @@ public final class GoogleOAuth extends BaseOAuth {
             SocialUser account = new SocialUser();
             account.setId(accountJson.getString("id"));
             account.setName(accountJson.getString("displayName"));
+            account.setProvider(OAuthProvider.GOOGLE);
             return account;
         } catch (Exception e){
             e.printStackTrace();

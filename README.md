@@ -55,7 +55,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.adrielcafe:AndroidOAuth:0.6'
+  compile 'com.github.adrielcafe:AndroidOAuth:0.7'
 }
 ```
 
@@ -66,7 +66,7 @@ dependencies {
 ```
 The MIT License (MIT)
 
-Copyright (c) 2015 Adriel Café
+Copyright (c) 2016 Adriel Café
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
