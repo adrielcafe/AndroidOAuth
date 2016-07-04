@@ -15,8 +15,8 @@ GoogleOAuth.Builder(this)
     .setTokenCallback(new OnGetTokenCallback() {
         @Override
         public void onSuccess(String token, SocialUser account) {
-            tokenView.setText("Google Token: \n" + token);
-            accountView.setText("Google User: \n" + account+"");
+            Log.d("Google Token", token);
+            Log.d("Google User", account+"");
         }
         @Override
         public void onError(Exception error) {
@@ -30,14 +30,14 @@ GoogleOAuth.Builder(this)
 ```java
 // No need to configure Android on Facebook app
 FacebookOAuth.Builder(this)
-    .setClientId(Credentials.FACEBOOK_APP_ID) 
+    .setClientId(Credentials.FACEBOOK_APP_ID)
     .setClientSecret(Credentials.FACEBOOK_APP_SECRET)
-    .setCallback(Credentials.FACEBOOK_REDIRECT_URI)
+    .setRedirectUri(Credentials.FACEBOOK_REDIRECT_URI)
     .setTokenCallback(new OnGetTokenCallback() {
         @Override
         public void onSuccess(String token, SocialUser account) {
-            tokenView.setText("Facebook Token: \n" + token);
-            accountView.setText("Facebook User: \n" + account+"");
+            Log.d("Facebook Token", token);
+            Log.d("Facebook User", account+"");
         }
         @Override
         public void onError(Exception error) {
@@ -57,7 +57,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.adrielcafe:AndroidOAuth:0.7'
+  compile 'com.github.adrielcafe:AndroidOAuth:0.8'
 }
 ```
 
