@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         FacebookOAuth.Builder(this)
             .setClientId(Credentials.FACEBOOK_APP_ID)
             .setClientSecret(Credentials.FACEBOOK_APP_SECRET)
-            .setCallback(Credentials.FACEBOOK_REDIRECT_URI)
+            .setRedirectUri(Credentials.FACEBOOK_REDIRECT_URI)
             .setTokenCallback(new OnGetTokenCallback() {
                 @Override
                 public void onSuccess(String token, SocialUser account) {

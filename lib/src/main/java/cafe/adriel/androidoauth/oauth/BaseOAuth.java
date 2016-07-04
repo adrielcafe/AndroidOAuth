@@ -23,7 +23,7 @@ public abstract class BaseOAuth {
     protected String clientId;
     protected String clientSecret;
     protected String scope;
-    protected String callback;
+    protected String redirectUri;
     protected String getAccountUrl;
     protected DefaultApi20 api;
     protected OnGetTokenCallback tokenCallback;
@@ -45,8 +45,8 @@ public abstract class BaseOAuth {
         return this;
     }
 
-    public BaseOAuth setCallback(String callback){
-        this.callback = callback;
+    public BaseOAuth setRedirectUri(String redirectUri){
+        this.redirectUri = redirectUri;
         return this;
     }
 
@@ -62,7 +62,7 @@ public abstract class BaseOAuth {
                 .apiSecret(clientSecret)
                 .state(state)
                 .scope(scope)
-                .callback(callback)
+                .callback(redirectUri)
                 .build(api);
         final String authUrl = service.getAuthorizationUrl();
         ConsentDialog.newInstance(authUrl, state)

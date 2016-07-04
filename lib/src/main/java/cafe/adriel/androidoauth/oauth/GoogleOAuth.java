@@ -10,12 +10,12 @@ import cafe.adriel.androidoauth.model.SocialUser;
 
 public final class GoogleOAuth extends BaseOAuth {
     private static final String SCOPE = "profile email";
-    private static final String CALLBACK = "urn:ietf:wg:oauth:2.0:oob:auto";
+    private static final String REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob:auto";
     private static final String GET_ACCOUNT_URL = "https://www.googleapis.com/plus/v1/people/me";
 
     private GoogleOAuth(Activity activity){
         super(activity, GoogleApi20.instance(), SCOPE, GET_ACCOUNT_URL);
-        callback = CALLBACK;
+        redirectUri = REDIRECT_URI;
     }
 
     public static GoogleOAuth Builder(Activity activity){
@@ -23,8 +23,8 @@ public final class GoogleOAuth extends BaseOAuth {
     }
 
     @Override
-    public BaseOAuth setCallback(String callback){
-        throw new IllegalArgumentException("Must use the default Google url callback");
+    public BaseOAuth setRedirectUri(String callback){
+        throw new IllegalArgumentException("Must use the default Google url redirect");
     }
 
     @Override
