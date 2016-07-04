@@ -1,3 +1,5 @@
+![Logo](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/logo.png)
+
 # AndroidOAuth
 > A simple way to authenticate with **Google** and **Facebook** using **OAuth 2.0** in Android
 
