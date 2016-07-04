@@ -55,9 +55,12 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.adrielcafe:AndroidOAuth:0.5'
+  compile 'com.github.adrielcafe:AndroidOAuth:0.6'
 }
 ```
+
+## Dependencies
+* [ScribeJava](https://github.com/scribejava/scribejava)
 
 ## License
 ```
