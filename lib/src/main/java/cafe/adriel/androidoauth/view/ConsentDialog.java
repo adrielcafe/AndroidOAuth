@@ -1,4 +1,4 @@
-package cafe.adriel.androidgoogleoauth;
+package cafe.adriel.androidoauth.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import cafe.adriel.androidoauth.callback.OnGetCodeCallback;
 
 public class ConsentDialog extends DialogFragment {
     private static final String EXTRA_AUTH_URL = "authUrl";
@@ -46,18 +48,8 @@ public class ConsentDialog extends DialogFragment {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                String title = view.getTitle();
-                if(title.startsWith("Success")){
-                    state = title.substring(title.indexOf("state="), title.indexOf("&")).replace("state=", "");
-                    code = title.substring(title.indexOf("code=")).replace("code=", "");
-                    if(ConsentDialog.this.state.equals(state)){
-                        callback.onSuccess(code);
-                    } else {
-                        callback.onError(new Exception("Wrong state"));
-                    }
-                    dismiss();
-                } else {
-                    callback.onError(new Exception(title));
+                if(view.getTitle().startsWith("Success") || url.contains("code=")) {
+                    getCode(view.getTitle(), url);
                 }
             }
         });
@@ -73,11 +65,25 @@ public class ConsentDialog extends DialogFragment {
         return this;
     }
 
-    private String getParamFromTitle(String title, String param){
-        return title.substring(
-                    title.indexOf(param + "="),
-                    title.indexOf("&")
-                ).replace(param + "=", "");
+    private void getCode(String title, String url){
+        if(title.startsWith("Success")){
+            state = title.substring(title.indexOf("state="), title.indexOf("&"))
+                    .replace("state=", "");
+            code = title.substring(title.indexOf("code="))
+                    .replace("code=", "");
+        } else if(url.contains("code=")){
+            state = url.substring(url.indexOf("state="))
+                    .replace("state=", "")
+                    .replace("#", "");
+            code = url.substring(url.indexOf("code="), url.indexOf("&"))
+                    .replace("code=", "");
+        }
+        if(ConsentDialog.this.state.equals(state)){
+            callback.onSuccess(code);
+        } else {
+            callback.onError(new Exception("Wrong state"));
+        }
+        dismiss();
     }
 
 }

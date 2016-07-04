@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "cafe.adriel.androidgoogleoauth"
+        applicationId "cafe.adriel.androidoauth"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
