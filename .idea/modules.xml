@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidGoogleOAuth.iml" filepath="$PROJECT_DIR$/AndroidGoogleOAuth.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/androidgoogleoauth.iml" filepath="$PROJECT_DIR$/lib/androidgoogleoauth.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
     </modules>

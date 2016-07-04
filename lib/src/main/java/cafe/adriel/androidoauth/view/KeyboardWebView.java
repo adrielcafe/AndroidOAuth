@@ -1,4 +1,4 @@
-package cafe.adriel.androidgoogleoauth;
+package cafe.adriel.androidoauth.view;
 
 import android.content.Context;
 import android.view.MotionEvent;
