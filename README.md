@@ -1,3 +1,5 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AndroidOAuth-green.svg?style=true)](https://android-arsenal.com/details/1/3837)
+
 ![Logo](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/logo.png)
 
 # AndroidOAuth
