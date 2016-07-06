@@ -63,6 +63,9 @@ dependencies {
 }
 ```
 
+## TODO
+* `logout()` method to revoke token
+
 ## Dependencies
 * [ScribeJava](https://github.com/scribejava/scribejava)
 
