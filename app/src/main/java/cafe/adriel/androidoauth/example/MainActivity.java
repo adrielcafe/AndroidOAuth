@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
             .setClientSecret(Credentials.GOOGLE_CLIENT_SECRET)
             .setTokenCallback(new OnGetTokenCallback() {
                 @Override
-                public void onSuccess(String token, SocialUser account) {
+                public void onSuccess(String token, SocialUser user) {
                     tokenView.setText("Google Token: \n" + token);
-                    accountView.setText("Google User: \n" + account+"");
+                    accountView.setText("Google User: \n" + user+"");
                 }
                 @Override
                 public void onError(Exception error) {
@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
             .setRedirectUri(Credentials.FACEBOOK_REDIRECT_URI)
             .setTokenCallback(new OnGetTokenCallback() {
                 @Override
-                public void onSuccess(String token, SocialUser account) {
+                public void onSuccess(String token, SocialUser user) {
                     tokenView.setText("Facebook Token: \n" + token);
-                    accountView.setText("Facebook User: \n" + account+"");
+                    accountView.setText("Facebook User: \n" + user+"");
                 }
                 @Override
                 public void onError(Exception error) {

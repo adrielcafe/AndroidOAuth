@@ -1,13 +1,15 @@
 package cafe.adriel.androidoauth.model;
 
 import java.io.Serializable;
-import java.security.Provider;
 
 import cafe.adriel.androidoauth.oauth.OAuthProvider;
 
 public class SocialUser implements Serializable {
     private String id;
     private String name;
+    private String email;
+    private String pictureUrl;
+    private String coverUrl;
     private OAuthProvider provider;
 
     public String getId() {
@@ -26,6 +28,30 @@ public class SocialUser implements Serializable {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
+    }
+
     public OAuthProvider getProvider() {
         return provider;
     }
@@ -36,6 +62,8 @@ public class SocialUser implements Serializable {
 
     @Override
     public String toString(){
-        return String.format("[id: %s, name: %s, provider: %s]", id, name, provider);
+        return String.format(
+                "[id: %s, name: %s, pictureUrl: %s, coverUrl: %s, provider: %s]",
+                id, name, pictureUrl, coverUrl, provider);
     }
 }

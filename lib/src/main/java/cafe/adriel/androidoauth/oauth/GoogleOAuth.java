@@ -34,6 +34,23 @@ public final class GoogleOAuth extends BaseOAuth {
             SocialUser account = new SocialUser();
             account.setId(accountJson.getString("id"));
             account.setName(accountJson.getString("displayName"));
+            if(accountJson.has("emails")) {
+                account.setEmail(accountJson
+                        .getJSONArray("emails")
+                        .getJSONObject(0)
+                        .getString("value"));
+            }
+            if(accountJson.has("image")){
+                account.setPictureUrl(accountJson
+                        .getJSONObject("image")
+                        .getString("url"));
+            }
+            if(accountJson.has("cover")) {
+                account.setCoverUrl(accountJson
+                        .getJSONObject("cover")
+                        .getJSONObject("coverPhoto")
+                        .getString("url"));
+            }
             account.setProvider(OAuthProvider.GOOGLE);
             return account;
         } catch (Exception e){

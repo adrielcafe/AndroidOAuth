@@ -5,6 +5,8 @@
 # AndroidOAuth
 > A simple way to authenticate with **Google** and **Facebook** using **OAuth 2.0** in Android
 
+I've made this lib in a hurry to my startup. My plan is to improve over time and add support to others social networks. All help are welcome! 
+
 ## Example
 ![Consent WebView](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/consent-webview.jpg) ![Token and User](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/token-user.jpg)
 
@@ -16,9 +18,9 @@ GoogleOAuth.Builder(this)
     .setClientSecret(Credentials.GOOGLE_CLIENT_SECRET)
     .setTokenCallback(new OnGetTokenCallback() {
         @Override
-        public void onSuccess(String token, SocialUser account) {
+        public void onSuccess(String token, SocialUser user) {
             Log.d("Google Token", token);
-            Log.d("Google User", account+"");
+            Log.d("Google User", user+"");
         }
         @Override
         public void onError(Exception error) {
@@ -37,9 +39,9 @@ FacebookOAuth.Builder(this)
     .setRedirectUri(Credentials.FACEBOOK_REDIRECT_URI)
     .setTokenCallback(new OnGetTokenCallback() {
         @Override
-        public void onSuccess(String token, SocialUser account) {
+        public void onSuccess(String token, SocialUser user) {
             Log.d("Facebook Token", token);
-            Log.d("Facebook User", account+"");
+            Log.d("Facebook User", user+"");
         }
         @Override
         public void onError(Exception error) {
@@ -59,12 +61,14 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.adrielcafe:AndroidOAuth:0.8'
+  compile 'com.github.adrielcafe:AndroidOAuth:0.9'
 }
 ```
 
 ## TODO
-* `logout()` method to revoke token
+- [ ] Twitter support
+- [ ] `logout()` method to revoke token
+- [X] Get `email`, `profileUrl` and `coverUrl` from authenticated user
 
 ## Dependencies
 * [ScribeJava](https://github.com/scribejava/scribejava)
