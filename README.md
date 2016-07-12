@@ -1,4 +1,4 @@
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AndroidOAuth-green.svg?style=true)](https://android-arsenal.com/details/1/3837)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AndroidOAuth-green.svg?style=true)](https://android-arsenal.com/details/1/3837) [![Release](https://jitpack.io/v/adrielcafe/AndroidOAuth.svg)](https://jitpack.io/#adrielcafe/AndroidOAuth)
 
 ![Logo](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/logo.png)
 
@@ -61,7 +61,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.adrielcafe:AndroidOAuth:0.9'
+  compile 'com.github.adrielcafe:AndroidOAuth:1.0.0'
 }
 ```
 
