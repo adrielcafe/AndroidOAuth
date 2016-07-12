@@ -3,6 +3,7 @@ package cafe.adriel.androidoauth.view;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -12,10 +13,10 @@ import cafe.adriel.androidoauth.callback.OnGetCodeCallback;
 
 public class ConsentDialog extends DialogFragment {
     private static final String EXTRA_AUTH_URL = "authUrl";
-    private static final String EXTRA_STATE = "state";
+    private static final String EXTRA_STATE = "originalState";
 
     private String authUrl;
-    private String state;
+    private String originalState;
     private String code;
     private OnGetCodeCallback callback;
 
@@ -32,7 +33,7 @@ public class ConsentDialog extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         authUrl = getArguments().getString(EXTRA_AUTH_URL);
-        state = getArguments().getString(EXTRA_STATE);
+        originalState = getArguments().getString(EXTRA_STATE);
     }
 
     @Override
@@ -60,28 +61,41 @@ public class ConsentDialog extends DialogFragment {
                 .create();
     }
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if(code == null || code.isEmpty()) {
+            callback.onError(new Exception(
+                    "Dialog was dismissed without complete the authentication"));
+        }
+    }
+
     public ConsentDialog setOnGetCodeCallback(OnGetCodeCallback callback){
         this.callback = callback;
         return this;
     }
 
     private void getCode(String title, String url){
+        String receivedState = "";
         if(title.startsWith("Success")){
-            state = title.substring(title.indexOf("state="), title.indexOf("&"))
+            receivedState = title.substring(title.indexOf("state="), title.indexOf("&"))
                     .replace("state=", "");
             code = title.substring(title.indexOf("code="))
                     .replace("code=", "");
-        } else if(url.contains("code=")){
-            state = url.substring(url.indexOf("state="))
+        } else if(url.contains("code=") && url.contains("state=")){
+            receivedState = url.substring(url.indexOf("state="))
                     .replace("state=", "")
-                    .replace("#", "");
+                    .replace("#", "")
+                    .replace("_=_", "");
             code = url.substring(url.indexOf("code="), url.indexOf("&"))
                     .replace("code=", "");
         }
-        if(ConsentDialog.this.state.equals(state)){
+        if(code != null && !code.isEmpty() && originalState.equals(receivedState)){
             callback.onSuccess(code);
         } else {
-            callback.onError(new Exception("Wrong state"));
+            String error = String.format("Wrong state: %s (original) != %s (received)",
+                    originalState, receivedState);
+            callback.onError(new Exception(error));
         }
         dismiss();
     }

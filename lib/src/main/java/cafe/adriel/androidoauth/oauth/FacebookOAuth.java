@@ -1,7 +1,6 @@
 package cafe.adriel.androidoauth.oauth;
 
 import android.app.Activity;
-import android.util.Log;
 
 import com.github.scribejava.apis.FacebookApi;
 

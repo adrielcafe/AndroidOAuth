@@ -24,7 +24,7 @@ public final class GoogleOAuth extends BaseOAuth {
 
     @Override
     public BaseOAuth setRedirectUri(String callback){
-        throw new IllegalArgumentException("Must use the default Google url redirect");
+        throw new IllegalArgumentException("Must use the default Google URI redirect");
     }
 
     @Override
