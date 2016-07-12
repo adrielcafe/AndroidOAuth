@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -49,8 +50,8 @@ public class ConsentDialog extends DialogFragment {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if(view.getTitle().startsWith("Success") || url.contains("code=")) {
-                    getCode(view.getTitle(), url);
+                if(url.contains("code=") && url.contains("state=")) {
+                    getCode(url);
                 }
             }
         });
@@ -75,21 +76,10 @@ public class ConsentDialog extends DialogFragment {
         return this;
     }
 
-    private void getCode(String title, String url){
-        String receivedState = "";
-        if(title.startsWith("Success")){
-            receivedState = title.substring(title.indexOf("state="), title.indexOf("&"))
-                    .replace("state=", "");
-            code = title.substring(title.indexOf("code="))
-                    .replace("code=", "");
-        } else if(url.contains("code=") && url.contains("state=")){
-            receivedState = url.substring(url.indexOf("state="))
-                    .replace("state=", "")
-                    .replace("#", "")
-                    .replace("_=_", "");
-            code = url.substring(url.indexOf("code="), url.indexOf("&"))
-                    .replace("code=", "");
-        }
+    private void getCode(String url){
+        Uri uri = Uri.parse(url);
+        String receivedState = uri.getQueryParameter("state");
+        code = uri.getQueryParameter("code");
         if(code != null && !code.isEmpty() && originalState.equals(receivedState)){
             callback.onSuccess(code);
         } else {

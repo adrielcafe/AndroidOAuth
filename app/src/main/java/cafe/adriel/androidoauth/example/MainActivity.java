@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         GoogleOAuth.Builder(this)
             .setClientId(Credentials.GOOGLE_CLIENT_ID)
             .setClientSecret(Credentials.GOOGLE_CLIENT_SECRET)
+            .setRedirectUri(Credentials.GOOGLE_REDIRECT_URI)
             .setTokenCallback(new OnGetTokenCallback() {
                 @Override
                 public void onSuccess(String token, SocialUser user) {

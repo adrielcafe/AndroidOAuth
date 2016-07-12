@@ -12,10 +12,11 @@ I've made this lib in a hurry to my startup. My plan is to improve over time and
 
 ### Google
 ```java
-// Use a Browser credential instead of Android credential
+// Use a Web credential instead of Android credential
 GoogleOAuth.Builder(this)
     .setClientId(Credentials.GOOGLE_CLIENT_ID)
     .setClientSecret(Credentials.GOOGLE_CLIENT_SECRET)
+    .setRedirectUri(Credentials.GOOGLE_REDIRECT_URI)
     .setTokenCallback(new OnGetTokenCallback() {
         @Override
         public void onSuccess(String token, SocialUser user) {
@@ -61,7 +62,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.adrielcafe:AndroidOAuth:1.0.0'
+  compile 'com.github.adrielcafe:AndroidOAuth:1.0.1'
 }
 ```
 
