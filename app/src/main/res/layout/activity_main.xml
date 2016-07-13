@@ -14,23 +14,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="1">
+        android:weightSum="3">
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
             android:text="Google"
+            android:maxLines="1"
             android:onClick="googleLogin"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
             android:text="Facebook"
+            android:maxLines="1"
             android:onClick="facebookLogin"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:text="Logout"
+            android:maxLines="1"
+            android:onClick="logout"/>
 
     </LinearLayout>
 

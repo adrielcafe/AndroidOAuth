@@ -2,7 +2,7 @@ package cafe.adriel.androidoauth.callback;
 
 import cafe.adriel.androidoauth.model.SocialUser;
 
-public interface OnGetTokenCallback {
+public interface OnLoginCallback {
 
     void onSuccess(String token, SocialUser user);
 

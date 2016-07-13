@@ -50,7 +50,7 @@ public class ConsentDialog extends DialogFragment {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if(url.contains("code=") && url.contains("state=")) {
+                if (url.contains("code=") && url.contains("state=")) {
                     getCode(url);
                 }
             }
@@ -65,22 +65,22 @@ public class ConsentDialog extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        if(code == null || code.isEmpty()) {
+        if (code == null || code.isEmpty()) {
             callback.onError(new Exception(
                     "Dialog was dismissed without complete the authentication"));
         }
     }
 
-    public ConsentDialog setOnGetCodeCallback(OnGetCodeCallback callback){
+    public ConsentDialog setOnGetCodeCallback(OnGetCodeCallback callback) {
         this.callback = callback;
         return this;
     }
 
-    private void getCode(String url){
+    private void getCode(String url) {
         Uri uri = Uri.parse(url);
         String receivedState = uri.getQueryParameter("state");
         code = uri.getQueryParameter("code");
-        if(code != null && !code.isEmpty() && originalState.equals(receivedState)){
+        if (code != null && !code.isEmpty() && originalState.equals(receivedState)) {
             callback.onSuccess(code);
         } else {
             String error = String.format("Wrong state: %s (original) != %s (received)",

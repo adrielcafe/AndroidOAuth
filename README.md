@@ -5,19 +5,24 @@
 # AndroidOAuth
 > A simple way to authenticate with **Google** and **Facebook** using **OAuth 2.0** in Android
 
-I've made this lib in a hurry to my startup. My plan is to improve over time and add support to others social networks. All help are welcome! 
+I've made this lib in a hurry to my startup. My plan is to improve over time and add support to others social networks. All help are welcome!
 
-## Example
-![Consent WebView](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/consent-webview.jpg) ![Token and User](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/token-user.jpg)
+![Google Consent](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/google-consent.jpg) ![Google Auth](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/google-auth.jpg)
+
+![Facebook Consent](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/facebook-consent.jpg) ![Facebook Auth](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/facebook-auth.jpg) 
+
+## How To Use
 
 ### Google
+
+#### Login
 ```java
 // Use a Web credential instead of Android credential
-GoogleOAuth.Builder(this)
+GoogleOAuth.login(this)
     .setClientId(Credentials.GOOGLE_CLIENT_ID)
     .setClientSecret(Credentials.GOOGLE_CLIENT_SECRET)
     .setRedirectUri(Credentials.GOOGLE_REDIRECT_URI)
-    .setTokenCallback(new OnGetTokenCallback() {
+    .setCallback(new OnLoginCallback() {
         @Override
         public void onSuccess(String token, SocialUser user) {
             Log.d("Google Token", token);
@@ -28,17 +33,36 @@ GoogleOAuth.Builder(this)
             error.printStackTrace();
         }
     })
-    .login();
+    .init();
+```
+
+#### Logout
+```java
+GoogleOAuth.logout(this)
+    .setToken(currentToken)
+    .setCallback(new OnLogoutCallback() {
+        @Override
+        public void onSuccess() {
+            
+        }
+        @Override
+        public void onError(Exception error) {
+            
+        }
+    })
+    .init();
 ```
 
 ### Facebook
+
+#### Login
 ```java
-// No need to configure Android on Facebook app
-FacebookOAuth.Builder(this)
+// No need to configure Android section on Facebook app
+FacebookOAuth.login(this)
     .setClientId(Credentials.FACEBOOK_APP_ID)
     .setClientSecret(Credentials.FACEBOOK_APP_SECRET)
     .setRedirectUri(Credentials.FACEBOOK_REDIRECT_URI)
-    .setTokenCallback(new OnGetTokenCallback() {
+    .setCallback(new OnLoginCallback() {
         @Override
         public void onSuccess(String token, SocialUser user) {
             Log.d("Facebook Token", token);
@@ -49,8 +73,26 @@ FacebookOAuth.Builder(this)
             error.printStackTrace();
         }
     })
-    .login();
+    .init();
 ```
+
+#### Logout
+```java
+FacebookOAuth.logout(this)
+    .setToken(currentToken)
+    .setCallback(new OnLogoutCallback() {
+        @Override
+        public void onSuccess() {
+            
+        }
+        @Override
+        public void onError(Exception error) {
+            
+        }
+    })
+    .init();
+```
+
 
 ## Import to your project
 Put this into your `app/build.gradle`:
@@ -68,11 +110,12 @@ dependencies {
 
 ## TODO
 - [ ] Twitter support
-- [ ] `logout()` method to revoke token
+- [X] `logout()` method to revoke token
 - [X] Get `email`, `profileUrl` and `coverUrl` from authenticated user
 
 ## Dependencies
 * [ScribeJava](https://github.com/scribejava/scribejava)
+* [HttpAgent](https://github.com/studioidan/HttpAgent)
 
 ## License
 ```

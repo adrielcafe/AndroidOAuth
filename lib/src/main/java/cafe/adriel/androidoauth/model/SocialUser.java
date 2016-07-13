@@ -61,9 +61,9 @@ public class SocialUser implements Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format(
-                "[id: %s, name: %s, pictureUrl: %s, coverUrl: %s, provider: %s]",
-                id, name, pictureUrl, coverUrl, provider);
+                "[id: %s, name: %s, email: %s, pictureUrl: %s, coverUrl: %s, provider: %s]",
+                id, name, email, pictureUrl, coverUrl, provider);
     }
 }
