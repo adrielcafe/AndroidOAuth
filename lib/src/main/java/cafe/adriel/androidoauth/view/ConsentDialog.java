@@ -50,8 +50,11 @@ public class ConsentDialog extends DialogFragment {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if (url.contains("code=") && url.contains("state=")) {
+                if (url.contains("code=")) {
                     getCode(url);
+                } else if(view.getTitle().contains("code=")){
+                    // Creating a valid URI to extract parameters easily
+                    getCode(view.getTitle().replace("Success ", "http://oauth?"));
                 }
             }
         });

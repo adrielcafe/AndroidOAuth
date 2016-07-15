@@ -19,6 +19,6 @@ android {
 }
 
 dependencies {
-    compile 'com.github.scribejava:scribejava-apis:2.8.0'
-    compile 'com.studioidan.httpagent:httpagent:1.0.3'
+    compile 'com.github.scribejava:scribejava-apis:2.8.1'
+    compile 'com.studioidan.httpagent:httpagent:1.0.3@aar'
 }
