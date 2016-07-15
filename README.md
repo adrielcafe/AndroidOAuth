@@ -1,8 +1,7 @@
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AndroidOAuth-green.svg?style=true)](https://android-arsenal.com/details/1/3837) [![Release](https://jitpack.io/v/adrielcafe/AndroidOAuth.svg)](https://jitpack.io/#adrielcafe/AndroidOAuth)
 
-![Logo](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/logo.png)
+![AndroidOAuth](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/logo.png)
 
-# AndroidOAuth
 > A simple way to authenticate with **Google** and **Facebook** using **OAuth 2.0** in Android
 
 I've made this lib in a hurry to my startup. My plan is to improve over time and add support to others social networks. All help are welcome! 
