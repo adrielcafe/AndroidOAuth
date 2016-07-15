@@ -5,15 +5,13 @@
 # AndroidOAuth
 > A simple way to authenticate with **Google** and **Facebook** using **OAuth 2.0** in Android
 
-I've made this lib in a hurry to my startup. My plan is to improve over time and add support to others social networks. All help are welcome!
-
-![Google Consent](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/google-consent.jpg) ![Google Auth](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/google-auth.jpg)
-
-![Facebook Consent](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/facebook-consent.jpg) ![Facebook Auth](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/facebook-auth.jpg) 
+I've made this lib in a hurry to my startup. My plan is to improve over time and add support to others social networks. All help are welcome! 
 
 ## How To Use
 
 ### Google
+
+![Google Consent](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/google-consent.jpg) ![Google Auth](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/google-auth.jpg)
 
 #### Login
 ```java
@@ -36,7 +34,7 @@ GoogleOAuth.login(this)
     .init();
 ```
 
-#### Logout
+#### Logout ([revoke token](https://developers.google.com/identity/protocols/OAuth2WebServer#tokenrevoke))
 ```java
 GoogleOAuth.logout(this)
     .setToken(currentToken)
@@ -54,6 +52,8 @@ GoogleOAuth.logout(this)
 ```
 
 ### Facebook
+
+![Facebook Consent](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/facebook-consent.jpg) ![Facebook Auth](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/screenshots/facebook-auth.jpg)
 
 #### Login
 ```java
@@ -76,7 +76,7 @@ FacebookOAuth.login(this)
     .init();
 ```
 
-#### Logout
+#### Logout ([revoke token](https://developers.facebook.com/docs/facebook-login/permissions/requesting-and-revoking#revokelogin))
 ```java
 FacebookOAuth.logout(this)
     .setToken(currentToken)
