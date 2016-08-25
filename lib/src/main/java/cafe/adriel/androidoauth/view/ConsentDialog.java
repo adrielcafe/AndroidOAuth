@@ -50,11 +50,13 @@ public class ConsentDialog extends DialogFragment {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if (url.contains("code=")) {
-                    getCode(url);
-                } else if(view.getTitle().contains("code=")){
-                    // Creating a valid URI to extract parameters easily
-                    getCode(view.getTitle().replace("Success ", "http://oauth?"));
+                if(view != null && url != null) {
+                    if (url.contains("code=")) {
+                        getCode(url);
+                    } else if (view.getTitle().contains("code=")) {
+                        // Creating a valid URI to extract parameters easily
+                        getCode(view.getTitle().replace("Success ", "http://oauth?"));
+                    }
                 }
             }
         });
@@ -68,7 +70,7 @@ public class ConsentDialog extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        if (code == null || code.isEmpty()) {
+        if (callback != null && (code == null || code.isEmpty())) {
             callback.onError(new Exception(
                     "Dialog was dismissed without complete the authentication"));
         }
