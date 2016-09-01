@@ -111,7 +111,7 @@ dependencies {
 - [ ] Twitter support
 - [X] Get `name`, `email`, `profileUrl` and `coverUrl` from authenticated user
 - [X] `logout()` method to revoke token
-- [X] `setAdditionalScope()` method to add more scopes from [Google](https://developers.google.com/identity/protocols/googlescopes) and [Facebook](https://developers.facebook.com/docs/facebook-login/permissions)
+- [X] `setAdditionalScopes()` method to add more scopes from [Google](https://developers.google.com/identity/protocols/googlescopes) and [Facebook](https://developers.facebook.com/docs/facebook-login/permissions)
 
 ## Dependencies
 * [ScribeJava](https://github.com/scribejava/scribejava)
