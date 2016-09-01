@@ -24,16 +24,14 @@ import cafe.adriel.androidoauth.view.ConsentDialog;
 public abstract class BaseOAuth {
     protected Activity activity;
     protected DefaultApi20 api;
-    protected String scope;
     protected String getAccountUrl;
     protected String revokeTokenUrl;
     protected Verb revokeTokenVerb;
 
-    protected BaseOAuth(Activity activity, DefaultApi20 api, String scope, String getAccountUrl,
+    protected BaseOAuth(Activity activity, DefaultApi20 api, String getAccountUrl,
                         String revokeTokenUrl, Verb revokeTokenVerb) {
         this.activity = activity;
         this.api = api;
-        this.scope = scope;
         this.getAccountUrl = getAccountUrl;
         this.revokeTokenUrl = revokeTokenUrl;
         this.revokeTokenVerb = revokeTokenVerb;
@@ -57,11 +55,13 @@ public abstract class BaseOAuth {
 
         protected String clientId;
         protected String clientSecret;
+        protected String scopes;
         protected String redirectUri;
         protected OnLoginCallback callback;
 
-        protected LoginOAuth(BaseOAuth oAuth) {
+        protected LoginOAuth(BaseOAuth oAuth, String scopes) {
             this.oAuth = oAuth;
+            this.scopes = scopes;
         }
 
         @Override
@@ -73,6 +73,12 @@ public abstract class BaseOAuth {
         @Override
         public LoginOAuth setClientSecret(String clientSecret) {
             this.clientSecret = clientSecret;
+            return this;
+        }
+
+        @Override
+        public LoginOAuth setAdditionalScopes(String scopes) {
+            this.scopes += " " + scopes;
             return this;
         }
 
@@ -99,7 +105,7 @@ public abstract class BaseOAuth {
                     .apiSecret(clientSecret)
                     .callback(redirectUri)
                     .state(state)
-                    .scope(oAuth.scope)
+                    .scope(scopes)
                     .build(oAuth.api);
             final String authUrl = service.getAuthorizationUrl();
 

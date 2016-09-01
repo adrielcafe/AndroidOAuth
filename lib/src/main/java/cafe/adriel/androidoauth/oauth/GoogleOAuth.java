@@ -10,18 +10,18 @@ import org.json.JSONObject;
 import cafe.adriel.androidoauth.model.SocialUser;
 
 public final class GoogleOAuth extends BaseOAuth {
-    private static final String SCOPE = "profile email";
+    private static final String DEFAULT_SCOPES = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
     private static final String GET_ACCOUNT_URL = "https://www.googleapis.com/plus/v1/people/me";
     private static final String REVOKE_TOKEN_URL = "https://accounts.google.com/o/oauth2/revoke?token=%s";
     private static final Verb REVOKE_TOKEN_VERB = Verb.GET;
 
     private GoogleOAuth(Activity activity) {
-        super(activity, GoogleApi20.instance(), SCOPE, GET_ACCOUNT_URL, REVOKE_TOKEN_URL,
+        super(activity, GoogleApi20.instance(), GET_ACCOUNT_URL, REVOKE_TOKEN_URL,
                 REVOKE_TOKEN_VERB);
     }
 
     public static LoginOAuth login(Activity activity) {
-        return new LoginOAuth(new GoogleOAuth(activity));
+        return new LoginOAuth(new GoogleOAuth(activity), DEFAULT_SCOPES);
     }
 
     public static LogoutOAuth logout(Activity activity) {

@@ -18,6 +18,7 @@ I've made this lib in a hurry to my startup. My plan is to improve over time and
 GoogleOAuth.login(this)
     .setClientId(Credentials.GOOGLE_CLIENT_ID)
     .setClientSecret(Credentials.GOOGLE_CLIENT_SECRET)
+    .setAdditionalScopes("https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/user.birthday.read")
     .setRedirectUri(Credentials.GOOGLE_REDIRECT_URI)
     .setCallback(new OnLoginCallback() {
         @Override
@@ -60,6 +61,7 @@ GoogleOAuth.logout(this)
 FacebookOAuth.login(this)
     .setClientId(Credentials.FACEBOOK_APP_ID)
     .setClientSecret(Credentials.FACEBOOK_APP_SECRET)
+    .setAdditionalScopes("user_friends user_birthday")
     .setRedirectUri(Credentials.FACEBOOK_REDIRECT_URI)
     .setCallback(new OnLoginCallback() {
         @Override
@@ -103,14 +105,15 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.adrielcafe:AndroidOAuth:1.1.2'
+  compile 'com.github.adrielcafe:AndroidOAuth:1.1.3'
 }
 ```
 
 ## TODO
 - [ ] Twitter support
+- [X] Get `name`, `email`, `profileUrl` and `coverUrl` from authenticated user
 - [X] `logout()` method to revoke token
-- [X] Get `email`, `profileUrl` and `coverUrl` from authenticated user
+- [X] `setAdditionalScope()` method to add more scopes from [Google](https://developers.google.com/identity/protocols/googlescopes) and [Facebook](https://developers.facebook.com/docs/facebook-login/permissions)
 
 ## Dependencies
 * [ScribeJava](https://github.com/scribejava/scribejava)

@@ -10,18 +10,18 @@ import org.json.JSONObject;
 import cafe.adriel.androidoauth.model.SocialUser;
 
 public final class FacebookOAuth extends BaseOAuth {
-    private static final String SCOPE = "public_profile email";
+    private static final String DEFAULT_SCOPES = "public_profile email";
     private static final String GET_ACCOUNT_URL = "https://graph.facebook.com/v2.6/me?fields=name,email,picture,cover";
     private static final String REVOKE_TOKEN_URL = "https://graph.facebook.com/v2.6/me/permissions?access_token=%s";
     private static final Verb REVOKE_TOKEN_VERB = Verb.DELETE;
 
     private FacebookOAuth(Activity activity) {
-        super(activity, FacebookApi.instance(), SCOPE, GET_ACCOUNT_URL, REVOKE_TOKEN_URL,
+        super(activity, FacebookApi.instance(), GET_ACCOUNT_URL, REVOKE_TOKEN_URL,
                 REVOKE_TOKEN_VERB);
     }
 
     public static LoginOAuth login(Activity activity) {
-        return new LoginOAuth(new FacebookOAuth(activity));
+        return new LoginOAuth(new FacebookOAuth(activity), DEFAULT_SCOPES);
     }
 
     public static LogoutOAuth logout(Activity activity) {

@@ -29,20 +29,17 @@ public class MainActivity extends AppCompatActivity {
         accountView = (TextView) findViewById(R.id.account);
     }
 
-    void googleLogin(View v) {
+    public void googleLogin(View v) {
         GoogleOAuth.login(this)
                 .setClientId(Credentials.GOOGLE_CLIENT_ID)
                 .setClientSecret(Credentials.GOOGLE_CLIENT_SECRET)
+                .setAdditionalScopes("https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/user.birthday.read")
                 .setRedirectUri(Credentials.GOOGLE_REDIRECT_URI)
                 .setCallback(new OnLoginCallback() {
                     @Override
                     public void onSuccess(String token, SocialUser user) {
-                        currentProvider = user.getProvider();
-                        currentToken = token;
-                        tokenView.setText("Google Token: \n" + token);
-                        accountView.setText("Google User: \n" + user + "");
+                        afterLogin(token, user);
                     }
-
                     @Override
                     public void onError(Exception error) {
                         error.printStackTrace();
@@ -51,20 +48,17 @@ public class MainActivity extends AppCompatActivity {
                 .init();
     }
 
-    void facebookLogin(View v) {
+    public void facebookLogin(View v) {
         FacebookOAuth.login(this)
                 .setClientId(Credentials.FACEBOOK_APP_ID)
                 .setClientSecret(Credentials.FACEBOOK_APP_SECRET)
+                .setAdditionalScopes("user_friends user_birthday")
                 .setRedirectUri(Credentials.FACEBOOK_REDIRECT_URI)
                 .setCallback(new OnLoginCallback() {
                     @Override
                     public void onSuccess(String token, SocialUser user) {
-                        currentProvider = user.getProvider();
-                        currentToken = token;
-                        tokenView.setText("Facebook Token: \n" + token);
-                        accountView.setText("Facebook User: \n" + user + "");
+                        afterLogin(token, user);
                     }
-
                     @Override
                     public void onError(Exception error) {
                         error.printStackTrace();
@@ -73,12 +67,13 @@ public class MainActivity extends AppCompatActivity {
                 .init();
     }
 
-    void logout(View v) {
+    public void logout(View v) {
         if (currentToken != null) {
             OnLogoutCallback callback = new OnLogoutCallback() {
                 @Override
                 public void onSuccess() {
                     Toast.makeText(MainActivity.this, "Logout Success!", Toast.LENGTH_SHORT).show();
+                    afterLogout();
                 }
 
                 @Override
@@ -102,9 +97,20 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         } else {
-            Toast.makeText(this, "Token not found. Login first.",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Token not found. Login first.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void afterLogin(String token, SocialUser user){
+        currentToken = token;
+        currentProvider = user.getProvider();
+        tokenView.setText(currentProvider +" Token: \n" + token);
+        accountView.setText(currentProvider +" User: \n" + user);
+    }
+
+    private void afterLogout(){
+        tokenView.setText("");
+        accountView.setText("");
     }
 
 }

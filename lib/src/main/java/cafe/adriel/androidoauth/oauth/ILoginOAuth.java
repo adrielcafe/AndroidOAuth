@@ -8,6 +8,8 @@ public interface ILoginOAuth<T> {
 
     T setClientSecret(String clientSecret);
 
+    T setAdditionalScopes(String scopes);
+
     T setRedirectUri(String redirectUri);
 
     T setCallback(OnLoginCallback callback);
