@@ -2,9 +2,7 @@
 
 ![AndroidOAuth](https://raw.githubusercontent.com/adrielcafe/AndroidOAuth/master/logo.png)
 
-> A simple way to authenticate with **Google** and **Facebook** using **OAuth 2.0** in Android
-
-I've made this lib in a hurry to my startup. My plan is to improve over time and add support to others social networks. All help are welcome! 
+> A simple way to authenticate with **Google** and **Facebook** using **OAuth 2.0** in Android 
 
 ## How To Use
 
