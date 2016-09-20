@@ -103,7 +103,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.adrielcafe:AndroidOAuth:1.1.3'
+  compile 'com.github.adrielcafe:AndroidOAuth:1.1.4'
 }
 ```
 

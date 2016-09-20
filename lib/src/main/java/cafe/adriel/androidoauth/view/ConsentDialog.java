@@ -85,12 +85,14 @@ public class ConsentDialog extends DialogFragment {
         Uri uri = Uri.parse(url);
         String receivedState = uri.getQueryParameter("state");
         code = uri.getQueryParameter("code");
-        if (code != null && !code.isEmpty() && originalState.equals(receivedState)) {
-            callback.onSuccess(code);
-        } else {
-            String error = String.format("Wrong state: %s (original) != %s (received)",
-                    originalState, receivedState);
-            callback.onError(new Exception(error));
+        if (callback != null) {
+            if (code != null && !code.isEmpty() && originalState.equals(receivedState)) {
+                callback.onSuccess(code);
+            } else {
+                String error = String.format("Wrong state: %s (original) != %s (received)",
+                        originalState, receivedState);
+                callback.onError(new Exception(error));
+            }
         }
         dismiss();
     }
