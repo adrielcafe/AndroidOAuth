@@ -7,6 +7,8 @@ import com.github.scribejava.core.model.Verb;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+
 import cafe.adriel.androidoauth.model.SocialUser;
 
 public final class FacebookOAuth extends BaseOAuth {
@@ -48,6 +50,12 @@ public final class FacebookOAuth extends BaseOAuth {
                 account.setCoverUrl(accountJson
                         .getJSONObject("cover")
                         .getString("source"));
+            }
+            if(accountJson.has("birthday")){
+                try {
+                    account.setBirthday(new SimpleDateFormat("MM/dd/yyyy")
+                            .parse(accountJson.getString("birthday")));
+                } catch (Exception e){ }
             }
             account.setProvider(OAuthProvider.FACEBOOK);
             return account;

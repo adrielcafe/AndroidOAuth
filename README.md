@@ -103,13 +103,13 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.adrielcafe:AndroidOAuth:1.1.4'
+  compile 'com.github.adrielcafe:AndroidOAuth:1.1.5'
 }
 ```
 
 ## TODO
 - [ ] Twitter support
-- [X] Get `name`, `email`, `profileUrl` and `coverUrl` from authenticated user
+- [X] Get `name`, `email`, `profileUrl`, `coverUrl` and `birthday` from authenticated user
 - [X] `logout()` method to revoke token
 - [X] `setAdditionalScopes()` method to add more scopes from [Google](https://developers.google.com/identity/protocols/googlescopes) and [Facebook](https://developers.facebook.com/docs/facebook-login/permissions)
 

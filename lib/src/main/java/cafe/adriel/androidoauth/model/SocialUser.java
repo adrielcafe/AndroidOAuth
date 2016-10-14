@@ -3,6 +3,8 @@ package cafe.adriel.androidoauth.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Date;
+
 import cafe.adriel.androidoauth.oauth.OAuthProvider;
 
 public class SocialUser implements Parcelable {
@@ -11,20 +13,11 @@ public class SocialUser implements Parcelable {
     private String email;
     private String pictureUrl;
     private String coverUrl;
+    private Date birthday;
     private OAuthProvider provider;
 
     public SocialUser() {
 
-    }
-
-    protected SocialUser(Parcel in) {
-        this.id = in.readString();
-        this.name = in.readString();
-        this.email = in.readString();
-        this.pictureUrl = in.readString();
-        this.coverUrl = in.readString();
-        int tmpProvider = in.readInt();
-        this.provider = tmpProvider == -1 ? null : OAuthProvider.values()[tmpProvider];
     }
 
     public String getId() {
@@ -67,6 +60,14 @@ public class SocialUser implements Parcelable {
         this.coverUrl = coverUrl;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public OAuthProvider getProvider() {
         return provider;
     }
@@ -78,8 +79,8 @@ public class SocialUser implements Parcelable {
     @Override
     public String toString() {
         return String.format(
-                "[id: %s, name: %s, email: %s, pictureUrl: %s, coverUrl: %s, provider: %s]",
-                id, name, email, pictureUrl, coverUrl, provider);
+                "[id: %s, name: %s, email: %s, pictureUrl: %s, coverUrl: %s, birthday: %s, provider: %s]",
+                id, name, email, pictureUrl, coverUrl, birthday, provider);
     }
 
     @Override
@@ -94,10 +95,23 @@ public class SocialUser implements Parcelable {
         dest.writeString(this.email);
         dest.writeString(this.pictureUrl);
         dest.writeString(this.coverUrl);
+        dest.writeLong(this.birthday != null ? this.birthday.getTime() : -1);
         dest.writeInt(this.provider == null ? -1 : this.provider.ordinal());
     }
 
-    public static final Parcelable.Creator<SocialUser> CREATOR = new Parcelable.Creator<SocialUser>() {
+    protected SocialUser(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+        this.email = in.readString();
+        this.pictureUrl = in.readString();
+        this.coverUrl = in.readString();
+        long tmpBirthday = in.readLong();
+        this.birthday = tmpBirthday == -1 ? null : new Date(tmpBirthday);
+        int tmpProvider = in.readInt();
+        this.provider = tmpProvider == -1 ? null : OAuthProvider.values()[tmpProvider];
+    }
+
+    public static final Creator<SocialUser> CREATOR = new Creator<SocialUser>() {
         @Override
         public SocialUser createFromParcel(Parcel source) {
             return new SocialUser(source);
